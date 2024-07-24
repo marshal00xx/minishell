@@ -1,0 +1,7 @@
+digraph AST {
+"0x7fb014c05950" [label="|"];
+"0x7fb014c05950" -> "0x7fb014c05870" [label="L"];
+"0x7fb014c05870" [label="LITERAL: ls -la "];
+"0x7fb014c05950" -> "0x7fb014c058f0" [label="R"];
+"0x7fb014c058f0" [label="LITERAL: echo "];
+}

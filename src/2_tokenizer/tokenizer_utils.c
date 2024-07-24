@@ -30,14 +30,32 @@ void tokens_list_append(t_token **tokens, t_token *new_token)
     }
 }
 
+void process_remaining_token(t_token **tokens, char *token)
+{
+    if (*token)
+    {
+        tokens_list_append(tokens, new_token(TOKEN_LITERAL, token));
+    }
+}
+
+void tokenize_pipe(t_token **tokens, char *token)
+{
+    tokens_list_append(tokens, new_token(TOKEN_PIPE, "|"));
+    if (*(token + 1))
+        process_remaining_token(tokens, token + 1);
+}
+
 void tokenize_redirections(t_token **tokens, char *token)
 {
+    int operator_size;
+
+    operator_size = 1;
     if (*token == '<')
     {
         if (*(token + 1) && *(token + 1) == '<')
         {
             tokens_list_append(tokens, new_token(TOKEN_HDOC, "<<"));
-            token++;
+            operator_size = 2;
         }
         else
             tokens_list_append(tokens, new_token(TOKEN_RDIR_IN, "<"));
@@ -47,9 +65,11 @@ void tokenize_redirections(t_token **tokens, char *token)
         if (*(token + 1) && *(token + 1) == '>')
         {
             tokens_list_append(tokens, new_token(TOKEN_RDIR_APPEND, ">>"));
-            token++;
+            operator_size = 2;
         }
         else
             tokens_list_append(tokens, new_token(TOKEN_RDIR_OUT, ">"));
     }
+    if (token)
+        process_remaining_token(tokens, token + operator_size);
 }

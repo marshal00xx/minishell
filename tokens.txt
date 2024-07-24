@@ -1,0 +1,4 @@
+Token type: 0, Token value: ls
+Token type: 0, Token value: -la
+Token type: 1, Token value: |
+Token type: 0, Token value: echo

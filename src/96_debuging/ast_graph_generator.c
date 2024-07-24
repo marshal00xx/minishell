@@ -6,7 +6,7 @@ void write_dot_node(FILE *file, t_ast_node *node) {
     fprintf(file, "\"%p\" [label=\"", (void *)node);
     switch (node->type) {
         case TOKEN_LITERAL:
-            fprintf(file, "CMD: ");
+            fprintf(file, "LITERAL: ");
             for (int i = 0; node->args && node->args[i]; i++) {
                 fprintf(file, "%s ", node->args[i]);
             }

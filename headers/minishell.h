@@ -53,6 +53,7 @@ bool has_unsupported_operators(char *cmd_line);
 // 02 tokenization
 t_token *new_token(t_token_type type, char *value);
 void tokens_list_append(t_token **tokens, t_token *new_token);
+void tokenize_pipe(t_token **tokens, char *token);
 void tokenize_redirections(t_token **tokens, char *token);
 t_token *tokenizer(char *cmd_line);
 
